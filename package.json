@@ -9,7 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@emotion/react": "^11.13.5",
+    "@emotion/react": "^11.11.0",
+    "@emotion/styled": "^11.11.0",
     "@hookform/resolvers": "^3.9.1",
     "@mui/material": "^6.1.9",
     "@mui/styled-engine": "^6.1.9",
