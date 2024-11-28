@@ -3,7 +3,12 @@ import { IconButton } from "@mui/material";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
-const CustomNavButton = ({ next, onClick }) => {
+interface CustomNavButtonProps {
+  next: boolean;
+  onClick: () => void;
+}
+
+const CustomNavButton: React.FC<CustomNavButtonProps> = ({ next, onClick }) => {
   return (
     <IconButton
       onClick={onClick}

@@ -155,7 +155,6 @@ export default function Footer() {
                 <FaTwitter className="w-5 h-5" />
               </Link>
               <Button
-                variant="outline"
                 size="icon"
                 className="rounded-full bg-[#00D2C1]  ml-12 hover:bg-[#00B5A7] border-0"
                 onClick={scrollToTop}
