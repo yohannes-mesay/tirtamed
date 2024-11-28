@@ -2,10 +2,9 @@
 
 import React from "react";
 import Slider from "./Slider";
-import More from "./More";
 function Hero() {
   return (
-    <div className="relative flex flex-col">
+    <div className="relative right-0 flex flex-col">
       <Slider />
     </div>
   );

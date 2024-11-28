@@ -13,6 +13,7 @@ function Slider() {
       style={{
         textAlign: "center",
         display: "flex",
+        border: "none",
         alignItems: "center",
         position: "relative",
         justifyContent: "center",
@@ -25,7 +26,7 @@ function Slider() {
         padding: isSmallScreen ? "10px" : "20px",
       }}
     >
-      <div className="absolute flex flex-col text-start left-20 gap-5">
+      <div className="absolute flex flex-col text-start left-5 md:left-20 gap-5">
         <div className=" top-0 pt-serif-bold tracking-wider text-second text-5xl  relative font-semibold slide-in-right ">
           Quality Health
         </div>

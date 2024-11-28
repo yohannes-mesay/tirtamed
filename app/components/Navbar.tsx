@@ -1,15 +1,21 @@
 "use client";
 import { useState } from "react";
+import { useRouter } from "next/router";
 import logo from "@/public/logo.png";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 function Navbar() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const pathname = usePathname();
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
+
+  const isActive = (path: string) =>
+    pathname === path ? "text-brand" : "text-black";
 
   return (
     <>
@@ -20,39 +26,39 @@ function Navbar() {
         <div className="flex gap-4 max-md:hidden tracking-wider text-xs items-center justify-around pt-2">
           <Link
             href="/"
-            className="text-[1.1rem] text-black hover:text-[#00d6c0]"
+            className={`text-[1.1rem] hover:text-[#00d6c0] ${isActive("/")}`}
           >
             Home
           </Link>
           <Link
             href="/about"
-            className="text-[1.1rem] text-black hover:text-[#00d6c0]"
+            className={`text-[1.1rem] hover:text-[#00d6c0] ${isActive(
+              "/about"
+            )}`}
           >
             About
           </Link>
           <Link
             href="/services"
-            className="text-[1.1rem] text-black hover:text-[#00d6c0]"
+            className={`text-[1.1rem] hover:text-[#00d6c0] ${isActive(
+              "/services"
+            )}`}
           >
             Services
           </Link>
-          {/* <Link
-            href="/pricing"
-            className="text-[1.1rem] text-black hover:text-[#00d6c0]"
-          >
-            Pricing
-          </Link> */}
           <Link
             href="/contact"
-            className="text-[1.1rem] text-black hover:text-[#00d6c0]"
+            className={`text-[1.1rem] hover:text-[#00d6c0] ${isActive(
+              "/contact"
+            )}`}
           >
             Contact
           </Link>
           <Link
             href="/contact"
-            className="bg-brand text-white rounded-3xl px-5 max-sm:px-3 max-lg:text-sm text-lg max-sm:py-0.5 py-2"
+            className="bg-brand text-white rounded-3xl px-5 max-sm:px-3 max-lg:text-sm text-lg max-sm:py-0.5 py-1.5 hover:scale-105 duration-200"
           >
-            Make Appointment
+            Course Registration
           </Link>
         </div>
 
@@ -98,45 +104,44 @@ function Navbar() {
         <div className="flex flex-col space-y-4">
           <Link
             href="/"
-            className="text-black hover:text-[#00d6c0]"
+            className={`text-[1.1rem] hover:text-[#00d6c0] ${isActive("/")}`}
             onClick={toggleSidebar}
           >
             Home
           </Link>
           <Link
-            href="/user"
-            className="text-black hover:text-[#00d6c0]"
+            href="/about"
+            className={`text-[1.1rem] hover:text-[#00d6c0] ${isActive(
+              "/about"
+            )}`}
             onClick={toggleSidebar}
           >
-            User
+            About
           </Link>
           <Link
-            href="/admin"
-            className="text-black hover:text-[#00d6c0]"
+            href="/services"
+            className={`text-[1.1rem] hover:text-[#00d6c0] ${isActive(
+              "/services"
+            )}`}
             onClick={toggleSidebar}
           >
-            Admin
+            Services
           </Link>
           <Link
-            href="/pricing"
-            className="text-black hover:text-[#00d6c0]"
+            href="/contact"
+            className={`text-[1.1rem] hover:text-[#00d6c0] ${isActive(
+              "/contact"
+            )}`}
             onClick={toggleSidebar}
           >
-            Pricing
+            Contact
           </Link>
           <Link
-            href="/login"
-            className="text-black py-1 rounded-md hover:text-[#00d6c0]"
+            href="/contact"
+            className="bg-brand text-white rounded-3xl px-5 max-sm:px-3 max-lg:text-sm text-lg max-sm:py-0.5 py-1.5 hover:scale-105 duration-200"
             onClick={toggleSidebar}
           >
-            Log in
-          </Link>
-          <Link
-            href="/subscribe"
-            className="bg-[#00d6c0] text-white px-4 py-2 rounded hover:bg-[#00bfa5]"
-            onClick={toggleSidebar}
-          >
-            Get Started
+            Course Registration
           </Link>
         </div>
       </div>

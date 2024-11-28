@@ -1,4 +1,3 @@
-import { Activity, Stethoscope, Ambulance } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import verctor1 from "@/public/vercor1.svg";
 import verctor2 from "@/public/vercor2.svg";

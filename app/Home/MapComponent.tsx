@@ -1,9 +1,8 @@
 "use client";
 
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import "leaflet/dist/leaflet.css";
+import { useEffect, useRef } from "react";
 import L from "leaflet";
-import { useEffect } from "react";
+import "leaflet/dist/leaflet.css";
 
 // Fix default marker issue in Leaflet for Next.js
 delete L.Icon.Default.prototype._getIconUrl;
@@ -19,7 +18,7 @@ L.Icon.Default.mergeOptions({
 interface LeafletMapProps {
   latitude: number;
   longitude: number;
-  zoom?: number; // Optional zoom level, defaults to 13
+  zoom?: number;
 }
 
 export default function LeafletMap({
@@ -27,31 +26,44 @@ export default function LeafletMap({
   longitude,
   zoom = 13,
 }: LeafletMapProps) {
-  useEffect(() => {
-    // Ensures Leaflet styles are applied in Next.js
-    if (typeof window !== "undefined") {
-      import("leaflet/dist/leaflet.css");
-    }
-  }, []);
+  const mapRef = useRef<L.Map | null>(null); // Reference to the map instance
 
-  return (
-    <div className="w-full h-96">
-      <MapContainer
-        center={[latitude, longitude]}
-        zoom={zoom}
-        scrollWheelZoom={false}
-        style={{ height: "100%", width: "100%" }}
-      >
-        <TileLayer
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        />
-        <Marker position={[latitude, longitude]}>
-          <Popup>
-            A pretty popup! <br /> Easily customizable.
-          </Popup>
-        </Marker>
-      </MapContainer>
-    </div>
-  );
+  useEffect(() => {
+    // Cleanup any existing map instance
+    if (mapRef.current) {
+      mapRef.current.off();
+      mapRef.current.remove();
+      mapRef.current = null;
+    }
+
+    // Initialize the map
+    const map = L.map("map-container", {
+      center: [latitude, longitude],
+      zoom,
+      scrollWheelZoom: false,
+    });
+
+    // Set the tile layer
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution:
+        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    }).addTo(map);
+
+    // Add a marker
+    L.marker([latitude, longitude]).addTo(map).bindPopup("A pretty popup!");
+
+    // Store the map instance in the ref
+    mapRef.current = map;
+
+    // Cleanup function
+    return () => {
+      if (mapRef.current) {
+        mapRef.current.off();
+        mapRef.current.remove();
+        mapRef.current = null;
+      }
+    };
+  }, [latitude, longitude, zoom]);
+
+  return <div id="map-container" className="w-full h-96" />;
 }

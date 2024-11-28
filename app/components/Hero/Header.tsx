@@ -3,8 +3,6 @@ import { FaLocationDot } from "react-icons/fa6";
 import { FaInstagram } from "react-icons/fa6";
 import { FaYoutube } from "react-icons/fa";
 import { FaTelegram } from "react-icons/fa";
-import Link from "next/link";
-import { IoMdMailOpen } from "react-icons/io";
 
 function Header() {
   return (

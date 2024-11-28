@@ -2,7 +2,6 @@
 import React from "react";
 import { Paper, useMediaQuery, useTheme } from "@mui/material";
 import banner1 from "@/public/contact.jpg";
-import Link from "next/link";
 
 function ContactBanner() {
   const theme = useTheme();
