@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
@@ -12,17 +12,23 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 
-function PhoneNav({ logo, isSidebarOpen, setIsSidebarOpen }) {
+interface PhoneNavProps {
+  logo: string;
+  isSidebarOpen: boolean;
+  setIsSidebarOpen: (isOpen: boolean) => void;
+}
+
+function PhoneNav({ logo, isSidebarOpen, setIsSidebarOpen }: PhoneNavProps) {
   const router = useRouter();
-  const sidebarRef = useRef(null);
+  const sidebarRef = useRef<HTMLDivElement>(null);
   const isDarkMode = false;
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
-  const handleClickOutside = (event) => {
-    if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
+  const handleClickOutside = (event: MouseEvent) => {
+    if (sidebarRef.current && !sidebarRef.current.contains(event.target as Node)) {
       setIsSidebarOpen(false);
     }
   };
@@ -97,8 +103,14 @@ function PhoneNav({ logo, isSidebarOpen, setIsSidebarOpen }) {
     </aside>
   );
 }
-
-function NavLink({ to, label, icon, isActive, onClick }) {
+interface Nav {
+  to: string;
+  label: string;
+  icon: React.ReactNode;
+  isActive: boolean;
+  onClick: () => void;
+}
+function NavLink({ to, label, icon, isActive, onClick }: Nav) {
   return (
     <Link href={to}>
       <a

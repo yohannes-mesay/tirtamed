@@ -13,12 +13,10 @@ import ListItemText from "@mui/material/ListItemText";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
 import Link from "next/link";
 import { useState } from "react";
 import { AppBar } from "@mui/material";
-import logo from "@/public/logo.png";
-import Image from "next/image";
+
 const drawerWidth = 200;
 
 interface NavbarProps {

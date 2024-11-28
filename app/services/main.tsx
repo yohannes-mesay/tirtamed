@@ -1,6 +1,5 @@
 import { useState } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
 import {
   ChevronRight,
   Stethoscope,
@@ -22,6 +21,7 @@ import serv2 from "@/public/serv2.jpg";
 import serv3 from "@/public/serv3.jpg";
 import serv4 from "@/public/serv4.jpg";
 import serv5 from "@/public/serv5.jpg";
+
 const services = [
   {
     icon: <Stethoscope className="h-8 w-8" />,
@@ -75,31 +75,16 @@ export default function ServicesPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
       <div className="container mx-auto px-4 py-16">
-        <motion.h1
-          className="text-4xl md:text-5xl font-bold text-center mb-4"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
+        <h1 className="text-4xl md:text-5xl font-bold text-center mb-4">
           Our Medical Training Services
-        </motion.h1>
-        <motion.p
-          className="text-xl text-center text-gray-600 mb-12"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        >
+        </h1>
+        <p className="text-xl text-center text-gray-600 mb-12">
           Empowering healthcare professionals with cutting-edge training and
           education
-        </motion.p>
+        </p>
 
         <div className="grid md:grid-cols-2 gap-8 items-start">
-          <motion.div
-            className="grid gap-4"
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-          >
+          <div className="grid gap-4">
             {services.map((service, index) => (
               <Card
                 key={index}
@@ -121,14 +106,9 @@ export default function ServicesPage() {
                 </CardHeader>
               </Card>
             ))}
-          </motion.div>
+          </div>
 
-          <motion.div
-            className="mt-8 md:mt-0"
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.6 }}
-          >
+          <div className="mt-8 md:mt-0">
             <Card className="overflow-hidden">
               <Image
                 src={selectedService.image}
@@ -153,15 +133,10 @@ export default function ServicesPage() {
                 </Button>
               </CardContent>
             </Card>
-          </motion.div>
+          </div>
         </div>
 
-        <motion.div
-          className="mt-16 text-center"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.8 }}
-        >
+        <div className="mt-16 text-center">
           <h2 className="text-3xl font-bold mb-4">
             Ready to Elevate Your Medical Skills?
           </h2>
@@ -176,7 +151,7 @@ export default function ServicesPage() {
           >
             Enroll Now
           </Button>
-        </motion.div>
+        </div>
       </div>
     </div>
   );
